@@ -1,5 +1,7 @@
 package com.game.development.core;
 
+import com.game.development.utilities.StandardFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,52 +10,44 @@ import javax.swing.*;
 
 public class MainMenu {
 
+    private JLabel mainMenuLabel;
+    private JButton closeGameButton;
+    private JButton newGameButton;
+    private JPanel mainMenuPanel;
+
     public static final String title = "Destiny Nor Glory";
-    public static final int width = 200;
-    public static final int height = 50;
-    private static JFrame frame;
+    private JFrame frame;
 
-    public static void createWindow() {
+    public MainMenu() {
         frame = new JFrame(title);
-        addMainMenuLlabel();
-        addNewGameButton();
-        addCloseGameButton();
+        addNewGameButtonLogic();
+        addCloseGameButtonLogic();
+        frame.add(mainMenuPanel, BorderLayout.CENTER);
         customizeJFrame();
+
     }
 
 
-    public static void addMainMenuLlabel() {
-        JLabel mainMenuLabel = new JLabel("Main Menu",SwingConstants.CENTER);
-        mainMenuLabel.setPreferredSize(new Dimension(width, height));
-        frame.getContentPane().add(mainMenuLabel, BorderLayout.PAGE_START);
-    }
-
-    public static void addNewGameButton() {
-        JButton newGameButton = new JButton("New Game");
-        newGameButton.setPreferredSize(new Dimension(width, height));
+    public void addNewGameButtonLogic() {
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HomePlayGround.createWindow();
+                StandardFrame homePlayGround = new StandardFrame();
                 frame.dispose();
             }
-        } );
-        frame.getContentPane().add(newGameButton, BorderLayout.CENTER);
+        });
     }
 
-    public static void addCloseGameButton() {
-        JButton closeGameButton = new JButton("Close Game");
-        closeGameButton.setPreferredSize(new Dimension(width, height));
+    public void addCloseGameButtonLogic() {
         closeGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         } );
-        frame.getContentPane().add(closeGameButton, BorderLayout.PAGE_END);
     }
 
-    public static void customizeJFrame() {
+    public void customizeJFrame() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();
