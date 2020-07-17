@@ -1,43 +1,65 @@
 package com.game.development.core;
 
+import com.game.development.utilities.StandardFrame;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
 public class MainMenu {
 
+    private JLabel mainMenuLabel;
+    private JButton closeGameButton;
+    private JButton newGameButton;
+    private JPanel mainMenuPanel;
 
-    public static void createWindow() {
-        JFrame frame = new JFrame("Main menu");
+    public static final String title = "Destiny Nor Glory";
+
+    private JFrame frame;
+
+    public MainMenu() {
+        frame = new JFrame(title);
+        addNewGameButtonLogic();
+        addCloseGameButtonLogic();
+        frame.add(mainMenuPanel, BorderLayout.CENTER);
+        customizeJFrame(frame);
+
+    }
+
+
+    public void addNewGameButtonLogic() {
+        newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newGameButtonLogic(frame);
+            }
+        });
+    }
+
+    public void newGameButtonLogic(JFrame frame) {
+        HomePlayGround homePlayGround = new HomePlayGround();
+        frame.dispose();
+    }
+
+    public void addCloseGameButtonLogic() {
+        closeGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        } );
+    }
+
+    public void customizeJFrame(JFrame frame) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        addMainMenuLlabel(frame);
-        addnewGameLabel(frame);
-        addcloseGameLabel(frame);
-
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
     }
 
-    public static void addMainMenuLlabel(JFrame frame) {
-        JLabel mainMenuLabel = new JLabel("Main Menu",SwingConstants.CENTER);
-        mainMenuLabel.setPreferredSize(new Dimension(200, 50));
-        frame.getContentPane().add(mainMenuLabel, BorderLayout.PAGE_START);
+    public JFrame getFrame() {
+        return frame;
     }
-
-    public static void addnewGameLabel(JFrame frame) {
-        JLabel newGameLabel = new JLabel("New Game",SwingConstants.CENTER);
-        newGameLabel.setPreferredSize(new Dimension(200, 50));
-        frame.getContentPane().add(newGameLabel, BorderLayout.CENTER);
-    }
-
-    public static void addcloseGameLabel(JFrame frame) {
-        JLabel closeGameLabel = new JLabel("Close Game",SwingConstants.CENTER);
-        closeGameLabel.setPreferredSize(new Dimension(200, 50));
-        frame.getContentPane().add(closeGameLabel, BorderLayout.PAGE_END);
-    }
-
-
-
 }
