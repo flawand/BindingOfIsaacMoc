@@ -18,17 +18,25 @@ public class StandardFrame extends JFrame{
         initFrame();
     }
 
-    private void initPanel() {
-        standardPanel = new StandardPanel();
-        standardPanel.setBackground(new java.awt.Color(255, 255, 255));
-        standardPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    public void initPanel() {
+        this.standardPanel = new StandardPanel();
+        this.standardPanel.setBackground(new java.awt.Color(255, 255, 255));
+        this.standardPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
 
-    private void initFrame() {
+    public void initFrame() {
         this.add(standardPanel, BorderLayout.CENTER);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         this.setVisible(true);
+    }
+
+    public JPanel getStandardPanel() {
+        return standardPanel;
+    }
+
+    public void setStandardPanel(JPanel standardPanel) {
+        this.standardPanel = standardPanel;
     }
 
 }

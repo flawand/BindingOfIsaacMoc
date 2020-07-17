@@ -16,6 +16,7 @@ public class MainMenu {
     private JPanel mainMenuPanel;
 
     public static final String title = "Destiny Nor Glory";
+
     private JFrame frame;
 
     public MainMenu() {
@@ -23,7 +24,7 @@ public class MainMenu {
         addNewGameButtonLogic();
         addCloseGameButtonLogic();
         frame.add(mainMenuPanel, BorderLayout.CENTER);
-        customizeJFrame();
+        customizeJFrame(frame);
 
     }
 
@@ -32,10 +33,14 @@ public class MainMenu {
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StandardFrame homePlayGround = new StandardFrame();
-                frame.dispose();
+                newGameButtonLogic(frame);
             }
         });
+    }
+
+    public void newGameButtonLogic(JFrame frame) {
+        HomePlayGround homePlayGround = new HomePlayGround();
+        frame.dispose();
     }
 
     public void addCloseGameButtonLogic() {
@@ -47,12 +52,14 @@ public class MainMenu {
         } );
     }
 
-    public void customizeJFrame() {
+    public void customizeJFrame(JFrame frame) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
     }
 
-
+    public JFrame getFrame() {
+        return frame;
+    }
 }

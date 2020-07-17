@@ -1,15 +1,20 @@
 package com.game.development.core;
 
-import com.game.development.utilities.JavaPaintUI;
+import com.game.development.utilities.StandardFrame;
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
 
-public class HomePlayGround {
+public class HomePlayGround extends StandardFrame {
 
-    public static final String title = "Destiny Nor Glory";
 
-    public static void createWindow() {
+    //TODO use Standard Frame to create this screen with a bed instead of entrance door
+    private HomePlayGroundPanel homePlayGroundPanel;
 
-        new JavaPaintUI();
-
+    @Override
+    public void initPanel() {
+        homePlayGroundPanel = new HomePlayGroundPanel();
+        setStandardPanel(homePlayGroundPanel);
     }
+
 
 }
