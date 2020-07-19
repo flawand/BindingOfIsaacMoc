@@ -13,7 +13,7 @@ public class StandardPanel extends JPanel {
     private int characterHeadWidth = 75;
     private int characterHeadHeight = 75;
     private int doorWidth = 150;
-    private int doorHeight = 75;
+    private int doorHeight = 50;
     private int windowWidth = 1000;
     private int windowHeight = 500;
     private final int padding = 5;
@@ -21,6 +21,7 @@ public class StandardPanel extends JPanel {
     private int characterHeadY;
     private int characterBodyX;
     private int characterBodyY;
+    private int standardroomlengthwall = 75;
 
 
     public StandardPanel() {
