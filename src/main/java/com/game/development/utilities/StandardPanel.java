@@ -7,6 +7,8 @@ import java.awt.*;
 public class StandardPanel extends JPanel {
 
 
+    //TODO: add a red dot to the head of the character
+
     private int characterHeadWidth = 75;
     private int characterHeadHeight = 75;
     private int doorWidth = 150;
@@ -14,6 +16,10 @@ public class StandardPanel extends JPanel {
     private int windowWidth = 1000;
     private int windowHeight = 500;
     private final int padding = 5;
+    private int characterHeadX;
+    private int characterHeadY;
+    private int characterBodyX;
+    private int characterBodyY;
 
 
     public StandardPanel() {
@@ -54,14 +60,14 @@ public class StandardPanel extends JPanel {
     }
 
     public void characterHead(Graphics g) {
-        int characterHeadX = 3*windowWidth/4;
-        int characterHeadY = windowHeight/4;
+        characterHeadX = 3*windowWidth/4;
+        characterHeadY = windowHeight/4;
         g.fillOval(characterHeadX, characterHeadY, characterHeadWidth, characterHeadHeight);
     }
 
     public void characterBody(Graphics g) {
-        int characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
-        int characterBodyY = windowHeight/4 + characterHeadHeight - padding;
+        characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
+        characterBodyY = windowHeight/4 + characterHeadHeight - padding;
         int characterBodyWidth = 25;
         int characterBodyHeight = 35;
         g.fillOval(characterBodyX, characterBodyY, characterBodyWidth, characterBodyHeight);
@@ -117,6 +123,38 @@ public class StandardPanel extends JPanel {
 
     public void setCharacterHeadHeight(int characterHeadHeight) {
         this.characterHeadHeight = characterHeadHeight;
+    }
+
+    public int getCharacterHeadX() {
+        return characterHeadX;
+    }
+
+    public int getCharacterHeadY() {
+        return characterHeadY;
+    }
+
+    public int getCharacterBodyX() {
+        return characterBodyX;
+    }
+
+    public int getCharacterBodyY() {
+        return characterBodyY;
+    }
+
+    public void setCharacterHeadX(int characterHeadX) {
+        this.characterHeadX = characterHeadX;
+    }
+
+    public void setCharacterHeadY(int characterHeadY) {
+        this.characterHeadY = characterHeadY;
+    }
+
+    public void setCharacterBodyX(int characterBodyX) {
+        this.characterBodyX = characterBodyX;
+    }
+
+    public void setCharacterBodyY(int characterBodyY) {
+        this.characterBodyY = characterBodyY;
     }
 
 }
