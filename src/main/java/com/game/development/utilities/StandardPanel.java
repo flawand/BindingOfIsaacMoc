@@ -8,6 +8,7 @@ public class StandardPanel extends JPanel {
 
 
     //TODO: add a red dot to the head of the character
+    //TODO: add standard wall length
 
     private int characterHeadWidth = 75;
     private int characterHeadHeight = 75;
