@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class StandardPanel extends JPanel {
+public class StandardPanel extends JPanel{
 
 
     //TODO: add a red dot to the head of the character
@@ -23,6 +23,10 @@ public class StandardPanel extends JPanel {
 
 
     public StandardPanel() {
+        this.characterHeadX = 3*windowWidth/4;
+        this.characterHeadY = windowHeight/4;
+        this.characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
+        this.characterBodyY = windowHeight/4 + characterHeadHeight - padding;
         setPreferredSize(new Dimension(windowWidth, windowHeight));
     }
 
@@ -60,18 +64,39 @@ public class StandardPanel extends JPanel {
     }
 
     public void characterHead(Graphics g) {
-        characterHeadX = 3*windowWidth/4;
-        characterHeadY = windowHeight/4;
         g.fillOval(characterHeadX, characterHeadY, characterHeadWidth, characterHeadHeight);
     }
 
     public void characterBody(Graphics g) {
-        characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
-        characterBodyY = windowHeight/4 + characterHeadHeight - padding;
         int characterBodyWidth = 25;
         int characterBodyHeight = 35;
         g.fillOval(characterBodyX, characterBodyY, characterBodyWidth, characterBodyHeight);
     }
+
+    public void moveLeft() {
+        setCharacterHeadX(getCharacterHeadX()-padding);
+        setCharacterBodyX(getCharacterBodyX()-padding);
+        repaint();
+    }
+
+    public void moveUp() {
+        setCharacterHeadY(getCharacterHeadY()-padding);
+        setCharacterBodyY(getCharacterBodyY()-padding);
+        repaint();
+    }
+
+    public void moveRight() {
+        setCharacterHeadX(getCharacterHeadX()+padding);
+        setCharacterBodyX(getCharacterBodyX()+padding);
+        repaint();
+    }
+
+    public void moveDown() {
+        setCharacterHeadY(getCharacterHeadY()+padding);
+        setCharacterBodyY(getCharacterBodyY()+padding);
+        repaint();
+    }
+
 
     public int getCharacterHeadWidth() {
         return characterHeadWidth;

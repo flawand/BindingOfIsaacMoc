@@ -11,7 +11,7 @@ class StandardFrameTest {
     @Test
     void testStandardFrame() throws InterruptedException {
         StandardFrame standardFrame = new StandardFrame();
-        sleep(10000);
+        sleep(100000);
     }
 
 }
