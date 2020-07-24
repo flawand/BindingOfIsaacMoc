@@ -6,8 +6,6 @@ import java.awt.*;
 
 public class StandardPanel extends JPanel{
 
-
-    //TODO: add a red dot to the head of the character
     //TODO: add standard wall length
 
     private int characterHeadWidth = 75;
@@ -22,14 +20,33 @@ public class StandardPanel extends JPanel{
     private int characterBodyX;
     private int characterBodyY;
     private int standardroomlengthwall = 75;
+    private int leftEyeX;
+    private int leftEyeY;
+    private int rightEyeX;
+    private int rightEyeY;
+    private boolean left = false;
+    private boolean right = false;
+    private boolean upDown = true;
 
 
     public StandardPanel() {
+        initHead();
+        initEyes();
+        setPreferredSize(new Dimension(windowWidth, windowHeight));
+    }
+
+    public void initHead() {
         this.characterHeadX = 3*windowWidth/4;
         this.characterHeadY = windowHeight/4;
         this.characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
         this.characterBodyY = windowHeight/4 + characterHeadHeight - padding;
-        setPreferredSize(new Dimension(windowWidth, windowHeight));
+    }
+
+    public void initEyes() {
+        this.leftEyeX = characterHeadX + characterHeadWidth/4;
+        this.leftEyeY = characterHeadY + characterHeadHeight/4;
+        this.rightEyeX = characterHeadX + 2*characterHeadWidth/3;
+        this.rightEyeY = characterHeadY + characterHeadHeight/4;
     }
 
     @Override
@@ -61,41 +78,79 @@ public class StandardPanel extends JPanel{
     }
 
     public void drawMainCharacter(Graphics g) {
-        characterHead(g);
+        characterFace(g);
         characterBody(g);
     }
 
-    public void characterHead(Graphics g) {
+    public void characterFace(Graphics g) {
         g.fillOval(characterHeadX, characterHeadY, characterHeadWidth, characterHeadHeight);
+        g.setColor(Color.red);
+        drawEyes(g);
     }
+
+    public void drawEyes(Graphics g) {
+        if(left)
+            drawLeftEye(g);
+        else if(right)
+            drawRightEye(g);
+        else
+            drawBothEyes(g);
+    }
+
+    public void drawBothEyes(Graphics g) {
+        g.fillOval(leftEyeX, leftEyeY, characterHeadWidth/5, characterHeadHeight/5);
+        g.fillOval(rightEyeX, rightEyeY, characterHeadWidth/5, characterHeadHeight/5);
+    }
+
+    public void drawLeftEye(Graphics g) {
+        g.fillOval(leftEyeX, leftEyeY, characterHeadWidth/5, characterHeadHeight/5);
+    }
+
+    public void drawRightEye(Graphics g) {
+        g.fillOval(rightEyeX, rightEyeY, characterHeadWidth/5, characterHeadHeight/5);
+    }
+
 
     public void characterBody(Graphics g) {
         int characterBodyWidth = 25;
         int characterBodyHeight = 35;
+        g.setColor(Color.black);
         g.fillOval(characterBodyX, characterBodyY, characterBodyWidth, characterBodyHeight);
     }
 
     public void moveLeft() {
+        this.left = true;
+        this.right = false;
         setCharacterHeadX(getCharacterHeadX()-padding);
         setCharacterBodyX(getCharacterBodyX()-padding);
+        initEyes();
         repaint();
     }
 
     public void moveUp() {
+        this.right = false;
+        this.left = false;
         setCharacterHeadY(getCharacterHeadY()-padding);
         setCharacterBodyY(getCharacterBodyY()-padding);
+        initEyes();
         repaint();
     }
 
     public void moveRight() {
+        this.right = true;
+        this.left = false;
         setCharacterHeadX(getCharacterHeadX()+padding);
         setCharacterBodyX(getCharacterBodyX()+padding);
+        initEyes();
         repaint();
     }
 
     public void moveDown() {
+        this.right = false;
+        this.left = false;
         setCharacterHeadY(getCharacterHeadY()+padding);
         setCharacterBodyY(getCharacterBodyY()+padding);
+        initEyes();
         repaint();
     }
 
@@ -183,5 +238,38 @@ public class StandardPanel extends JPanel{
     public void setCharacterBodyY(int characterBodyY) {
         this.characterBodyY = characterBodyY;
     }
+
+    public int getLeftEyeX() {
+        return leftEyeX;
+    }
+
+    public void setLeftEyeX(int leftEyeX) {
+        this.leftEyeX = leftEyeX;
+    }
+
+    public int getLeftEyeY() {
+        return leftEyeY;
+    }
+
+    public void setLeftEyeY(int leftEyeY) {
+        this.leftEyeY = leftEyeY;
+    }
+
+    public int getRightEyeX() {
+        return rightEyeX;
+    }
+
+    public void setRightEyeX(int rightEyeX) {
+        this.rightEyeX = rightEyeX;
+    }
+
+    public int getRightEyeY() {
+        return rightEyeY;
+    }
+
+    public void setRightEyeY(int rightEyeY) {
+        this.rightEyeY = rightEyeY;
+    }
+
 
 }
