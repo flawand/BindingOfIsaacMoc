@@ -4,21 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class StandardPanel extends JPanel {
+public class StandardPanel extends JPanel{
 
+    //TODO: add standard wall length
 
-    private int characterHeadWidth = 75;
-    private int characterHeadHeight = 75;
     private int doorWidth = 150;
-    private int doorHeight = 75;
-    private int windowWidth = 1000;
-    private int windowHeight = 500;
+    private int doorHeight = 50;
+    private int windowWidth = Constants.WINDOWWIDTH;
+    private int windowHeight = Constants.WINDOWHEIGHT;
     private final int padding = 5;
+    private Character mainCharacter;
+    private boolean moveUp;
+    private boolean moveDown;
+    private boolean moveRight;
+    private boolean moveLeft;
 
 
     public StandardPanel() {
+        this.moveRight = true;
+        this.moveLeft = true;
+        this.moveUp = true;
+        this.moveDown = true;
+        this.mainCharacter = new Character();
         setPreferredSize(new Dimension(windowWidth, windowHeight));
     }
+
 
     @Override
     public void paintComponent(Graphics g) {
@@ -29,7 +39,7 @@ public class StandardPanel extends JPanel {
     public void draw(Graphics g) {
         drawOptionalObject(g);
         drawExitDoor(g);
-        drawMainCharacter(g);
+        mainCharacter.drawMainCharacter(g);
     }
 
     public void drawOptionalObject(Graphics g) {
@@ -48,31 +58,49 @@ public class StandardPanel extends JPanel {
         g.drawRect(exitDoorX, exitDoorY, doorWidth, doorHeight);
     }
 
-    public void drawMainCharacter(Graphics g) {
-        characterHead(g);
-        characterBody(g);
+
+    public void moveLeft() {
+        if(moveLeft) {
+            mainCharacter.setLeft(true);
+            mainCharacter.setRight(false);
+            mainCharacter.setCharacterHeadX(mainCharacter.getCharacterHeadX()-padding);
+            mainCharacter.setCharacterBodyX(mainCharacter.getCharacterBodyX()-padding);
+            mainCharacter.initEyes();
+            repaint();
+        }
     }
 
-    public void characterHead(Graphics g) {
-        int characterHeadX = 3*windowWidth/4;
-        int characterHeadY = windowHeight/4;
-        g.fillOval(characterHeadX, characterHeadY, characterHeadWidth, characterHeadHeight);
+    public void moveUp() {
+        if(moveUp) {
+            mainCharacter.setLeft(false);
+            mainCharacter.setRight(false);
+            mainCharacter.setCharacterHeadY(mainCharacter.getCharacterHeadY()-padding);
+            mainCharacter.setCharacterBodyY(mainCharacter.getCharacterBodyY()-padding);
+            mainCharacter.initEyes();
+            repaint();
+        }
     }
 
-    public void characterBody(Graphics g) {
-        int characterBodyX = 3*windowWidth/4 + characterHeadWidth/2 - padding;
-        int characterBodyY = windowHeight/4 + characterHeadHeight - padding;
-        int characterBodyWidth = 25;
-        int characterBodyHeight = 35;
-        g.fillOval(characterBodyX, characterBodyY, characterBodyWidth, characterBodyHeight);
+    public void moveRight() {
+        if(moveRight) {
+            mainCharacter.setLeft(false);
+            mainCharacter.setRight(true);
+            mainCharacter.setCharacterHeadX(mainCharacter.getCharacterHeadX()+padding);
+            mainCharacter.setCharacterBodyX(mainCharacter.getCharacterBodyX()+padding);
+            mainCharacter.initEyes();
+            repaint();
+        }
     }
 
-    public int getCharacterHeadWidth() {
-        return characterHeadWidth;
-    }
-
-    public int getCharacterHeadHeight() {
-        return characterHeadHeight;
+    public void moveDown() {
+        if(moveDown) {
+            mainCharacter.setLeft(false);
+            mainCharacter.setRight(false);
+            mainCharacter.setCharacterHeadY(mainCharacter.getCharacterHeadY()+padding);
+            mainCharacter.setCharacterBodyY(mainCharacter.getCharacterBodyY()+padding);
+            mainCharacter.initEyes();
+            repaint();
+        }
     }
 
     public int getDoorWidth() {
@@ -83,40 +111,58 @@ public class StandardPanel extends JPanel {
         return doorHeight;
     }
 
-    public int getWindowWidth() {
-        return windowWidth;
-    }
-
-    public int getWindowHeight() {
-        return windowHeight;
-    }
-
     public int getPadding() {
         return padding;
     }
-
-    public void setDoorWidth(int doorWidth) {
-        this.doorWidth = doorWidth;
-    }
-
-    public void setDoorHeight(int doorHeight) {
-        this.doorHeight = doorHeight;
+    public int getWindowWidth() {
+        return windowWidth;
     }
 
     public void setWindowWidth(int windowWidth) {
         this.windowWidth = windowWidth;
     }
 
+    public int getWindowHeight() {
+        return windowHeight;
+    }
+
     public void setWindowHeight(int windowHeight) {
         this.windowHeight = windowHeight;
     }
 
-    public void setCharacterHeadWidth(int characterHeadWidth) {
-        this.characterHeadWidth = characterHeadWidth;
+    public boolean isMoveUp() {
+        return moveUp;
     }
 
-    public void setCharacterHeadHeight(int characterHeadHeight) {
-        this.characterHeadHeight = characterHeadHeight;
+    public void setMoveUp(boolean moveUp) {
+        this.moveUp = moveUp;
     }
 
+    public boolean isMoveDown() {
+        return moveDown;
+    }
+
+    public void setMoveDown(boolean moveDown) {
+        this.moveDown = moveDown;
+    }
+
+    public boolean isMoveRight() {
+        return moveRight;
+    }
+
+    public void setMoveRight(boolean moveRight) {
+        this.moveRight = moveRight;
+    }
+
+    public boolean isMoveLeft() {
+        return moveLeft;
+    }
+
+    public void setMoveLeft(boolean moveLeft) {
+        this.moveLeft = moveLeft;
+    }
+
+    public Character getMainCharacter() {
+        return mainCharacter;
+    }
 }

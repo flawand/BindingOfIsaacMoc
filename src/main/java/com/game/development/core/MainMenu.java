@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class MainMenu {
 
+    //TODO: make the frame longer to show credits and add more content
+
     private JLabel mainMenuLabel;
     private JButton closeGameButton;
     private JButton newGameButton;

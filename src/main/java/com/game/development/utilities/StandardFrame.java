@@ -1,5 +1,8 @@
 package com.game.development.utilities;
 
+import com.game.development.physics.engine.GameListener;
+import com.game.development.physics.engine.MaintainBorderThread;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.BevelBorder;
@@ -7,7 +10,9 @@ import javax.swing.border.BevelBorder;
 
 public class StandardFrame extends JFrame{
 
-    private JPanel standardPanel;
+    private StandardPanel standardPanel;
+    private GameListener gameListener;
+    private Thread thread;
 
     public StandardFrame() {
         initComponents();
@@ -15,7 +20,12 @@ public class StandardFrame extends JFrame{
 
     private void initComponents() {
         initPanel();
+        this.gameListener = new GameListener(standardPanel);
+        addKeyListener(this.gameListener);
+        setFocusable(true);
         initFrame();
+        this.thread = new MaintainBorderThread(this.standardPanel);
+        thread.start();
     }
 
     public void initPanel() {
@@ -31,11 +41,12 @@ public class StandardFrame extends JFrame{
         this.setVisible(true);
     }
 
+
     public JPanel getStandardPanel() {
         return standardPanel;
     }
 
-    public void setStandardPanel(JPanel standardPanel) {
+    public void setStandardPanel(StandardPanel standardPanel) {
         this.standardPanel = standardPanel;
     }
 
