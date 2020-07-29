@@ -1,5 +1,8 @@
 package com.game.development.utilities;
 
+import com.game.development.physics.engine.GameListener;
+import com.game.development.physics.engine.MaintainBorderThread;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.BevelBorder;

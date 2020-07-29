@@ -1,5 +1,8 @@
-package com.game.development.utilities;
+package com.game.development.physics.engine;
 
+
+import com.game.development.utilities.Character;
+import com.game.development.utilities.StandardPanel;
 
 import java.util.concurrent.locks.ReentrantLock;
 

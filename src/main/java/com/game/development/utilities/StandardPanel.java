@@ -18,7 +18,6 @@ public class StandardPanel extends JPanel{
     private boolean moveDown;
     private boolean moveRight;
     private boolean moveLeft;
-    private int standardroomlengthwall = 75;
 
 
     public StandardPanel() {
