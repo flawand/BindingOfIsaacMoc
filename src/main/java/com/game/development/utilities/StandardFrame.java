@@ -9,6 +9,7 @@ public class StandardFrame extends JFrame{
 
     private StandardPanel standardPanel;
     private GameListener gameListener;
+    private Thread thread;
 
     public StandardFrame() {
         initComponents();
@@ -20,6 +21,8 @@ public class StandardFrame extends JFrame{
         addKeyListener(this.gameListener);
         setFocusable(true);
         initFrame();
+        this.thread = new MaintainBorderThread(this.standardPanel);
+        thread.start();
     }
 
     public void initPanel() {

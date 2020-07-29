@@ -1,6 +1,5 @@
 package com.game.development.utilities;
 
-import com.game.development.utilities.StandardPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
